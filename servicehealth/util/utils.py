@@ -3,9 +3,13 @@ import xml.etree.ElementTree as ET
 import pathlib
 import yaml
 import servicehealth.util.globalconstants as GC
+import logging
 
+module_logger = logging.getLogger('servicehealth.util.Utils')
 
 class Utils:
+
+
 
     @staticmethod
     def soap_call(envData,service, data):
@@ -15,11 +19,10 @@ class Utils:
         with client.settings(raw_response=True):
             response = client.service.Add(**data)
             if response.status_code == 200:
-                print(service)
                 root = ET.fromstring(response.content)
                 return root
             else:
-                print(f'Response Code:{response.status_code}')
+                module_logger.error(f'Response Code:{response.status_code}')
 
     @staticmethod
     def load_section_config(section):
@@ -31,7 +34,7 @@ class Utils:
             try:
                 data = yaml.safe_load(stream)
             except yaml.YAMLError as exc:
-                print(exc)
-            print(data[section])
+                module_logger.error(exc)
+            module_logger.debug(data[section])
             return data[section]
 

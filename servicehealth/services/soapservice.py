@@ -1,17 +1,20 @@
 from servicehealth.util.utils import Utils
 import servicehealth.util.globalconstants as GC
+import logging
 
 
 class SoapService:
     env = None
     envConfig = None
     serviceConfig = None
+    logger = None
 
     def __init__(self, environment):
         """
         This is the init function for setting up the class
         """
-        print(f"The environment is {environment}")
+        self.logger = logging.getLogger('servicehealth.services.RestService')
+        self.logger.debug(f"The environment is {environment}")
         self.env = environment
         #self.envConfig = Utils.load_section_config(GC.ENVIRONMENTS_SECTION)
         self.serviceConfig = Utils.load_section_config(GC.SERVICES_SECTION)
@@ -27,4 +30,4 @@ class SoapService:
         response = Utils.soap_call(envdata,service, data)
         if response:
             for result in response.findall('.//role:AddResult', service["namespace"]):
-                print(result.text)
+                self.logger.info(result.text)
