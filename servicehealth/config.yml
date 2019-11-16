@@ -1,0 +1,18 @@
+services:
+  serviceA:
+    name: "SOAP Service"
+    namespace: {'role': 'http://tempuri.org/'}
+    environments:
+      prod:
+        url: "http://www.dneonline.com/calculator.asmx?WSDL"
+      dev:
+        url: "http://www.dneonline.com/calculator.asmx?WSDL"
+  serviceB:
+    name: "Rest Service"
+    environments:
+      prod:
+        url: "https://httpbin.org/get"
+      dev:
+        url: "https://httpbin.org/get"
+
+

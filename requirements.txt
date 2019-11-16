@@ -1,0 +1,6 @@
+requests
+configparser
+pyyaml
+pathlib
+zeep
+argparse
