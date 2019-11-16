@@ -15,7 +15,7 @@ class RestService:
         self.env = environment
         self.serviceConfig = Utils.load_section_config(GC.SERVICES_SECTION)
 
-    def post_wsdl(self):
+    def get_data(self):
         """
         TO add two numbers
         :return:

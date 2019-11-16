@@ -20,7 +20,7 @@ def test_soap():
 
 def test_rest():
     rest = RestService(env)
-    rest.post_wsdl()
+    rest.get_data()
 
 
 test_soap()
